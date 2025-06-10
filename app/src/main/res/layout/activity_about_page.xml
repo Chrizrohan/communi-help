@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutPage">
+    <ImageView
+        android:id="@+id/imagebox"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/box"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/abouttext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="80dp"
+        android:text="ABOUT"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/aboutCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:layout_constraintTop_toBottomOf="@id/imagebox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/aboutDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/about_community_help_mobile_application_the_community_help_mobile_application_is_a_unique_platform_built_with_the_goal_of_encouraging_kindness_compassion_and_community_driven_support_this_app_is_designed_to_connect_people_who_want_to_offer_help_with_those_who_are_in_need_through_the_donation_and_request_of_essential_items_such_as_second_hand_clothes_useful_products_and_medical_blood_in_many_communities_people_have_items_they_no_longer_need_clothing_that_no_longer_fits_products_that_go_unused_or_the_ability_to_donate_blood_but_don_t_know_where_or_how_to_give_them_to_those_who_could_truly_benefit_at_the_same_time_there_are_many_individuals_in_need_who_lack_a_convenient_trustworthy_way_to_request_such_help_this_app_bridges_that_gap_how_it_works_offering_help_users_can_offer_clothes_household_items_or_medical_blood_to_others_all_they_need_to_do_is_fill_out_a_simple_form_add_a_description_provide_their_contact_information_address_and_phone_number_and_post_the_offer_requesting_help_users_who_are_in_need_can_browse_available_offers_or_submit_a_request_detailing_what_they_need_and_how_others_can_reach_them_direct_communication_the_app_does_not_rely_on_gps_or_map_based_location_tracking_instead_each_offer_and_request_includes_the_user_s_address_and_phone_number_making_it_easy_for_both_parties_to_get_in_touch_directly_and_securely_key_features_clean_and_simple_user_interface_dedicated_sections_for_clothes_products_and_medical_blood_ability_to_post_both_offers_and_requests_browse_offers_by_category_contact_helpers_directly_via_phone_or_address_no_need_for_location_services_or_complicated_sign_ups_the_community_help_mobile_application_aims_to_build_a_network_of_trust_sharing_and_mutual_assistance_especially_in_areas_where_access_to_basic_items_or_emergency_blood_is_limited_whether_you_re_offering_a_helping_hand_or_reaching_out_for_one_this_app_is_here_to_connect_you_with_people_who_care"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
