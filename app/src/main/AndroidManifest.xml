@@ -15,20 +15,26 @@
         android:theme="@style/Theme.CommuniHelp"
         tools:targetApi="31">
         <activity
+            android:name=".AddOfferMedicalEmergency"
+            android:exported="false" />
+        <activity
+            android:name=".AddOfferProduct"
+            android:exported="false" />
+        <activity
+            android:name=".AddOffer"
+            android:exported="false" />
+        <activity
             android:name=".HistoryActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Launcher activity -->
+        </activity> <!-- Launcher activity -->
         <activity
             android:name=".ServiceActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MedicalEmergencyActivity"
             android:exported="false" />
