@@ -36,15 +36,17 @@
     <!-- Settings icon -->
     <ImageButton
         android:id="@+id/settings_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:src="@drawable/settingicon"
         android:background="@android:color/transparent"
         android:contentDescription="Settings"
+        android:scaleType="centerInside"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp" />
+
 
     <!-- Home title -->
     <TextView
@@ -138,10 +140,11 @@
         android:layout_marginBottom="16dp"
         android:background="null"
         android:src="@drawable/homeicon"
+        android:contentDescription="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/history"
-        app:layout_constraintHorizontal_chainStyle="packed" />
+        app:layout_constraintEnd_toStartOf="@id/history"/>
+
 
     <ImageButton
         android:id="@+id/history"
@@ -150,10 +153,11 @@
         android:layout_marginBottom="16dp"
         android:background="null"
         android:src="@drawable/historyicon"
+        android:contentDescription="History"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/homeicon"
-        app:layout_constraintEnd_toStartOf="@id/profileicon"
-        app:layout_constraintHorizontal_chainStyle="packed" />
+        app:layout_constraintEnd_toStartOf="@id/profileicon"/>
+
 
     <ImageButton
         android:id="@+id/profileicon"
@@ -162,10 +166,10 @@
         android:layout_marginBottom="16dp"
         android:background="null"
         android:src="@drawable/profileicon"
+        android:contentDescription="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/history"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
