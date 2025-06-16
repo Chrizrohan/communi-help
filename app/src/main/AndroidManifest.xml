@@ -15,6 +15,12 @@
         android:theme="@style/Theme.CommuniHelp"
         tools:targetApi="31">
         <activity
+            android:name=".AddRequest"
+            android:exported="false" />
+        <activity
+            android:name=".AddOfferService"
+            android:exported="false" />
+        <activity
             android:name=".AddOfferMedicalEmergency"
             android:exported="false" />
         <activity
