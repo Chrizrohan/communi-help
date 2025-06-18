@@ -66,40 +66,41 @@
 
     <ImageButton
         android:id="@+id/homeicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        android:layout_marginEnd="270dp"
-        android:background="@drawable/homeicon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/homeicon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
+        android:background="@null"
+        android:contentDescription="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profilephonenum" />
+        app:layout_constraintEnd_toStartOf="@id/history"/>
+
 
     <ImageButton
         android:id="@+id/history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/time"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/time"
-        app:layout_constraintTop_toBottomOf="@id/profilephonenum"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="380dp"
-        />
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/historyicon"
+        android:contentDescription="History"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/homeicon"
+        app:layout_constraintEnd_toStartOf="@id/profileicon"/>
+
 
     <ImageButton
         android:id="@+id/profileicon"
-        android:layout_width="38dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="380dp"
-        android:background="@drawable/profile"
-        android:src="@drawable/profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profilephonenum" />
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/profileicon"
+        android:background="@null"
+        android:contentDescription="Profileicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/history"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:text="connect and share for better community"
         app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:textColor="#244065"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CommuniHelp"
         tools:targetApi="31">
         <activity
+            android:name=".NotifyPage"
+            android:exported="true" />
+        <activity
             android:name=".AddRequestService"
             android:exported="false" />
         <activity
