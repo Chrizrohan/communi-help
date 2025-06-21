@@ -12,17 +12,14 @@
     <ImageView
         android:id="@+id/backgroundimage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="200dp"
-        android:alpha="0.5"
+        android:layout_height="250dp"
         android:scaleType="centerCrop"
+        android:alpha=".5"
         android:src="@drawable/backgroundimage"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:elevation="-5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagebox"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imagebox"
