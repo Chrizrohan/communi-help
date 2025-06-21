@@ -1,24 +1,49 @@
 package com.example.communihelp;
 
-import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class HomePage extends AppCompatActivity {
+
+    ImageButton settingsButton, notificationButton, homeIcon, historyIcon, profileIcon;
+    TextView productTextView, medicalTextView, serviceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Initialize Views
+        settingsButton = findViewById(R.id.settings_button);
+        notificationButton = findViewById(R.id.notification_button);
+        productTextView = findViewById(R.id.product);
+        medicalTextView = findViewById(R.id.medical);
+        serviceTextView = findViewById(R.id.service);
+        homeIcon = findViewById(R.id.homeicon);
+        historyIcon = findViewById(R.id.history);
+        profileIcon = findViewById(R.id.profileicon);
+
+        // Set Click Listeners
+        settingsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, SettingPage.class)));
+
+        notificationButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, NotifyPage.class)));
+
+        productTextView.setOnClickListener(v -> startActivity(new Intent(HomePage.this,OfferProduct.class)));
+
+        medicalTextView.setOnClickListener(v -> startActivity(new Intent(HomePage.this,MedicalEmergencyActivity.class)));
+
+        serviceTextView.setOnClickListener(v -> startActivity(new Intent(HomePage.this, ServiceActivity.class)));
+
+        homeIcon.setOnClickListener(v -> startActivity(new Intent(HomePage.this, HomePage.class)));
+
+        historyIcon.setOnClickListener(v -> startActivity(new Intent(HomePage.this, HistoryActivity.class)));
+
+        profileIcon.setOnClickListener(v -> startActivity(new Intent(HomePage.this, ProfilePage.class)));
     }
 }
