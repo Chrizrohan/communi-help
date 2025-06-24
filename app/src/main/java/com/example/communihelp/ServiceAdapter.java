@@ -1,5 +1,6 @@
 package com.example.communihelp;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,12 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
 
         holder.tvDetails.setText(service.getDescription());
         holder.tvNameCategory.setText(service.getName());
-        holder.tvStars.setText(getStars(service.getRating()));
+
+        holder.reviewText.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(),ViewReviewPage.class);
+            holder.itemView.getContext().startActivity(intent);
+        });
+
     }
 
     @Override
@@ -51,14 +57,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvStars, tvNameCategory, tvDetails;
+        TextView  tvNameCategory, tvDetails,reviewText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvStars = itemView.findViewById(R.id.tvStars);
+
             tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
             tvDetails = itemView.findViewById(R.id.tvDetails);
+            reviewText = itemView.findViewById(R.id.viewReview);
         }
     }
 }

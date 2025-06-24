@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilePage extends AppCompatActivity {
 
     ImageButton homeIcon, historyIcon;
-    ImageView backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +51,6 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
-        // Optional: Back arrow to go back to HomePage
-        backArrow.setOnClickListener(v -> {
-            Intent backIntent = new Intent(ProfilePage.this, HomePage.class);
-            startActivity(backIntent);
-            finish();
-        });
+
     }
 }

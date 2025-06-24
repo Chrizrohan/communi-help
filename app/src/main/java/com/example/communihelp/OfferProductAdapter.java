@@ -1,5 +1,6 @@
 package com.example.communihelp;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapte
 
         holder.tvNameCategory.setText(offer.getName() + " : " + offer.getCategory());
         holder.tvDetails.setText("- " + offer.getSubCategory());
-        holder.tvStars.setText(getStars(offer.getRating()));
+
 
         // Optional: Button click actions
         holder.btnAccept.setOnClickListener(v -> {
@@ -45,6 +46,11 @@ public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapte
 
         holder.btnIgnore.setOnClickListener(v -> {
             // Handle ignore logic here
+        });
+
+        holder.reviewText.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(),ViewReviewPage.class);
+            holder.itemView.getContext().startActivity(intent);
         });
     }
 
@@ -62,16 +68,17 @@ public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapte
     }
 
     public static class OfferViewHolder extends RecyclerView.ViewHolder {
-        TextView tvStars, tvNameCategory, tvDetails;
-        Button btnAccept, btnIgnore;
+        TextView tvNameCategory, tvDetails;
+        TextView btnAccept, btnIgnore,reviewText;
 
         public OfferViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvStars = itemView.findViewById(R.id.tvStars);
+
             tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
             tvDetails = itemView.findViewById(R.id.tvDetails);
             btnAccept = itemView.findViewById(R.id.btnAccept);
             btnIgnore = itemView.findViewById(R.id.btnIgnore);
+            reviewText = itemView.findViewById(R.id.viewReview);
         }
     }
 }

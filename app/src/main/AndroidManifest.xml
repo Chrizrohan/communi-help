@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Permission to access internet -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommuniHelp"
         tools:targetApi="31">
+        <activity
+            android:name=".ViewReviewPage"
+            android:exported="false" />
         <activity
             android:name=".NotifyPage"
             android:exported="true" />
@@ -43,8 +46,7 @@
             android:exported="false" />
         <activity
             android:name=".HistoryActivity"
-            android:exported="true"/>
-            <!-- Launcher activity -->
+            android:exported="true" /> <!-- Launcher activity -->
         <activity
             android:name=".ServiceActivity"
             android:exported="true" />
@@ -89,13 +91,22 @@
             android:exported="false" />
         <activity
             android:name=".AuthActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        </activity>
+
+        <activity android:name=".FlashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

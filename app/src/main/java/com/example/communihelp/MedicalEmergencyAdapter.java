@@ -1,5 +1,6 @@
 package com.example.communihelp;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +33,13 @@ public class MedicalEmergencyAdapter extends RecyclerView.Adapter<MedicalEmergen
         MedicalEmergencyModule medicalEmergency = medicalEmergencyList.get(position);
 
         holder.tvDetails.setText(medicalEmergency.getDescription());
-        holder.tvNameCategory.setText(medicalEmergency.getName());
-        holder.tvStars.setText(getStars(medicalEmergency.getRating()));
+        holder.tvNameCategory.setText(medicalEmergency.getName()
+        );
 
-
+        holder.reviewText.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(),ViewReviewPage.class);
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     private String getStars(float rating) {
@@ -54,14 +58,15 @@ public class MedicalEmergencyAdapter extends RecyclerView.Adapter<MedicalEmergen
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvStars, tvNameCategory, tvDetails;
+        TextView  tvNameCategory, tvDetails,reviewText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvStars = itemView.findViewById(R.id.tvStars);
+
             tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
             tvDetails = itemView.findViewById(R.id.tvDetails);
+            reviewText = itemView.findViewById(R.id.viewReview);
         }
     }
 }

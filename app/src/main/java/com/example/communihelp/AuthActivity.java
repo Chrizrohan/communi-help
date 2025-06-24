@@ -7,14 +7,22 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.communihelp.databinding.ActivityAuthBinding;
+
 public class AuthActivity extends AppCompatActivity {
 
     private Button loginButton;
     private Button signupButton;
 
+    ActivityAuthBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        binding = ActivityAuthBinding.inflate(getLayoutInflater());
+
+
         setContentView(R.layout.activity_auth); // Links to your XML
 
         // Initialize buttons

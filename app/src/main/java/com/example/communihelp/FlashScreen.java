@@ -18,7 +18,7 @@ public class FlashScreen extends AppCompatActivity {
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             // After the delay, start AuthActivity
-            Intent intent = new Intent(com.example.communihelp.FlashScreen.this, AuthActivity.class);
+            Intent intent = new Intent(FlashScreen.this, AuthActivity.class);
             startActivity(intent);
             finish(); // Close the splash screen so the user can't go back to it
         }, SPLASH_TIME);
