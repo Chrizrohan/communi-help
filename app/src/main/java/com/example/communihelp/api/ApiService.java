@@ -1,6 +1,7 @@
 package com.example.communihelp.api;
 
 import com.example.communihelp.server.LoginResponse;
+import com.example.communihelp.server.ProfileResponse;
 import com.example.communihelp.server.SignupResponse;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public interface ApiService {
     Call<LoginResponse> loginUser(
             @Field("email") String email,
             @Field("pass") String password);
+    @FormUrlEncoded
+    @POST("profile.php")
+    Call<ProfileResponse> getUserProfile(
+            @Field("user_id") String userId
+    );
 
 
 }

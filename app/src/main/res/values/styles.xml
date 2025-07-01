@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RatingBarYellowStars" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#FFFF00</item> <!-- Yellow stars -->
+    </style>
+
+</resources>

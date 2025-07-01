@@ -10,9 +10,15 @@ public class LoginResponse {
     public User getData() { return data; }
 
     public class User {
+        private int user_id;
         private String name;
         private String email;
         // Add other fields if your PHP returns more
+
+
+        public int getId() {
+            return user_id;
+        }
 
         public String getName() { return name; }
         public String getEmail() { return email; }

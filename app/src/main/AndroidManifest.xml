@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CommuniHelp"
         tools:targetApi="31">
         <activity
+            android:name=".AddReview"
+            android:exported="false" />
+        <activity
             android:name=".ViewReviewPage"
             android:exported="false" />
         <activity
@@ -91,11 +94,9 @@
             android:exported="false" />
         <activity
             android:name=".AuthActivity"
-            android:exported="true">
-
-        </activity>
-
-        <activity android:name=".FlashScreen"
+            android:exported="true"></activity>
+        <activity
+            android:name=".FlashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

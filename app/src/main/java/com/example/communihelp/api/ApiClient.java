@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static final String BASE_URL = "https://ll7sf212-80.inc1.devtunnels.ms/ems/";
+    public static ApiService getClient;
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
@@ -35,4 +36,9 @@ public class ApiClient {
         }
         return retrofit;
     }
+
+    public static ApiService getApiService() {
+        return getClient().create(ApiService.class);
+    }
+
 }

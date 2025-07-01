@@ -57,6 +57,9 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     if (loginResponse.isStatus()) {
+
+                        SharedPrefManager.getInstance(Login.this).saveUser(response.body().getData().getId()+"");
+                        SharedPrefManager.getInstance(Login.this).isLoggedIn();
                         Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, HomePage.class);
                         startActivity(intent);

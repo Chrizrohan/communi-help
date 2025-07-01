@@ -2,5 +2,11 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alata</item>
+        <item>@font/allerta</item>
+        <item>@font/carter_one</item>
+        <item>@font/fredoka_one</item>
+        <item>@font/itim</item>
+        <item>@font/rubik_80s_fade</item>
+        <item>@font/tilt_warp</item>
     </array>
 </resources>

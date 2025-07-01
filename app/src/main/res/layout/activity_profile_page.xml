@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePage">
+
     <ImageView
         android:id="@+id/imagebox"
         android:layout_width="match_parent"
@@ -14,19 +15,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/itim"
         android:text="PROFILE"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/profilename"
         android:layout_width="0dp"
@@ -39,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/imagebox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/profileemail"
         android:layout_width="0dp"
@@ -51,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/profilename"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/profilephonenum"
         android:layout_width="0dp"
@@ -63,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/profileemail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
     <ImageButton
         android:id="@+id/homeicon"
@@ -101,6 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/history"
         app:layout_constraintEnd_toEndOf="parent"/>
+
     <ImageView
         android:id="@+id/backgroundimage"
         android:layout_width="0dp"

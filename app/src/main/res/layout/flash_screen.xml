@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/fredoka_one"
         android:gravity="center"
         android:text="CommuniHelp"
         android:textColor="#244065"
@@ -58,12 +59,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/fredoka_one"
         android:gravity="center"
         android:text="Let’s help each other..."
         android:textColor="#244065"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/LINE"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/LINE" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
