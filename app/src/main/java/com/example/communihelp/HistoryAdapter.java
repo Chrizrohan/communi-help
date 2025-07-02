@@ -32,8 +32,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
         HistoryModel historyModel = historyModelList.get(position);
 
-        holder.tvDetails.setText( historyModel.getDescription());
-        holder.tvNameCategory.setText( historyModel.getName());
+        holder.tvDetails.setText(historyModel.getDetails());
+        holder.tvNameCategory.setText(historyModel.getCategory());
+
 
     }
 

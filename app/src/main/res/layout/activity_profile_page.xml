@@ -35,40 +35,46 @@
         android:id="@+id/profilename"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rectangle_10"
+        android:clickable="false"
+        android:focusable="false"
         android:hint="Name"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/imagebox"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/imagebox" />
 
     <EditText
         android:id="@+id/profileemail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rectangle_10"
+        android:clickable="false"
+        android:focusable="false"
         android:hint="Email"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/profilename"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/profilename" />
 
     <EditText
         android:id="@+id/profilephonenum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rectangle_10"
+        android:clickable="false"
+        android:focusable="false"
         android:hint="Phone Number"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/profileemail"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/profileemail" />
 
 
     <ImageButton
