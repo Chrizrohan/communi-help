@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Header Section -->
+    <ImageView
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/box"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Header Section -->
-        <ImageView
-            android:id="@+id/topBar"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/box"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/backArrow"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/arrowback"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/arrowback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/serviceTitle"
@@ -42,114 +42,135 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Dropdown Section -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            card_view:cardCornerRadius="8dp"
-            card_view:cardElevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/topBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp">
+    <!-- Dropdown Section -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="4dp">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Categories"
+                android:textColor="#244065"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/categoryRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
-                <TextView
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Service Categories"
-                    android:textColor="#244065"
-                    android:textStyle="bold" />
+                    android:text="Clothes" />
 
-                <RadioGroup
-                    android:id="@+id/categoryRadioGroup"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="Food Materials" />
 
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clothes"/>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Food Materials"/>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Carpenter"/>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Study Materials"/>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Electrical Appliances"/>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Others"/>
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carpenter" />
 
-        <!-- Mention Details -->
-        <TextView
-            android:id="@+id/mentionDetailsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mention details"
-            android:textColor="#244065"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/cardView"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Materials" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/detailsCard"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            card_view:cardCornerRadius="8dp"
-            card_view:cardElevation="4dp"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/mentionDetailsLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Electrical Appliances" />
 
-            <EditText
-                android:id="@+id/detailsEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="There is requirement of Raw food materials in our orphanage.
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Others" />
+            </RadioGroup>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
- Address        : Tambaram
-Contact info : 9876543214"
-                android:background="@android:color/transparent"
-                android:padding="12dp"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:maxLines="5" />
-        </androidx.cardview.widget.CardView>
+    <!-- Mention Details -->
+    <TextView
+        android:id="@+id/mentionDetailsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Mention details"
+        android:textColor="#244065"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView" />
 
-        <!-- Add Offer Button -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/addofferproduct1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="0dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/finalbutton"
-            android:text="ADD REQUEST"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/detailsCard"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mentionDetailsLabel"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="4dp">
+
+        <EditText
+            android:id="@+id/detailsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="There is requirement of Raw food materials in our orphanage.\n Address        : Tambaram\nContact info : 9876543214"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Add Offer Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addofferproduct1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/finalbutton"
+        android:text="ADD REQUEST"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/backgroundimage"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:scaleType="centerCrop"
         android:alpha=".5"
+        android:elevation="-5dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/backgroundimage"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:elevation="-5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
