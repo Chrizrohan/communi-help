@@ -3,6 +3,9 @@ package com.example.communihelp.api;
 import com.example.communihelp.server.AddOfferMedicalEmergencyResponse;
 import com.example.communihelp.server.AddOfferProductResponse;
 import com.example.communihelp.server.AddOfferServiceResponse;
+import com.example.communihelp.server.AddRequestMedicalEmergencyResponse;
+import com.example.communihelp.server.AddRequestProductResponse;
+import com.example.communihelp.server.AddRequestServiceResponse;
 import com.example.communihelp.server.ChangePasswordResponce;
 import com.example.communihelp.server.EditProfileResponse;
 import com.example.communihelp.server.HistoryResponse;
@@ -10,8 +13,6 @@ import com.example.communihelp.server.LoginResponse;
 import com.example.communihelp.server.ProfileResponse;
 
 import com.example.communihelp.server.SignupResponse;
-
-import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -85,5 +86,27 @@ public interface ApiService {
             @Field("category") String category,
             @Field("details") String details
     );
+    @FormUrlEncoded
+    @POST("addrequestproduct.php")
+    Call<AddRequestProductResponse> addRequestProduct(
+            @Field("user_id") String userId,
+            @Field("category") String category,
+            @Field("details") String details
+    );
+    @FormUrlEncoded
+    @POST("addrequestmedical.php")
+    Call<AddRequestMedicalEmergencyResponse> addMedicalEmergencyRequest(
+            @Field("user_id") String userId,
+            @Field("category") String category,
+            @Field("details") String details
+    );
+    @FormUrlEncoded
+    @POST("addrequestservice.php")
+    Call<AddRequestServiceResponse> addServiceRequest(
+            @Field("user_id") String userId,
+            @Field("category") String category,
+            @Field("details") String details
+    );
+
 
 }
