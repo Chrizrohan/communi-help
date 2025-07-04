@@ -1,9 +1,9 @@
 package com.example.communihelp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.communihelp.api.ApiClient;
 import com.example.communihelp.api.ApiService;
-
 import com.example.communihelp.server.AddRequestMedicalEmergencyResponse;
 
 import retrofit2.Call;
@@ -24,8 +23,9 @@ public class AddRequestMedicalEmergency extends AppCompatActivity {
     RadioGroup categoryGroup;
     EditText detailsEditText;
     Button submitButton;
+    ImageView backArrow;
 
-    String userId ;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,13 @@ public class AddRequestMedicalEmergency extends AppCompatActivity {
         categoryGroup = findViewById(R.id.categoryRadioGroup);
         detailsEditText = findViewById(R.id.detailsEditText);
         submitButton = findViewById(R.id.addmedicalemergency1);
+        backArrow = findViewById(R.id.backArrow);
+
+        // Get user ID from Shared Preferences
         userId = SharedPrefManager.getInstance(this).getUserId();
 
         submitButton.setOnClickListener(v -> submitRequest());
+        backArrow.setOnClickListener(v -> finish());
     }
 
     private void submitRequest() {
@@ -65,6 +69,7 @@ public class AddRequestMedicalEmergency extends AppCompatActivity {
             public void onResponse(Call<AddRequestMedicalEmergencyResponse> call, Response<AddRequestMedicalEmergencyResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(AddRequestMedicalEmergency.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    finish(); // Go back to previous screen after success
                 } else {
                     Toast.makeText(AddRequestMedicalEmergency.this, "Server error", Toast.LENGTH_SHORT).show();
                 }

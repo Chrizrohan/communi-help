@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.communihelp.OfferProuductModule;
 import com.example.communihelp.R;
+import com.example.communihelp.server.ProductResponse;
 
 import java.util.List;
 
 public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapter.OfferViewHolder> {
 
-    private List<OfferProuductModule> offerList;
+    private List<ProductResponse.ProductData> offerList;
 
-    public OfferProductAdapter(List<OfferProuductModule> offerList) {
+    public OfferProductAdapter(List<ProductResponse.ProductData> offerList) {
         this.offerList = offerList;
     }
 
@@ -33,10 +34,10 @@ public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapte
 
     @Override
     public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
-        OfferProuductModule offer = offerList.get(position);
+        ProductResponse.ProductData offer = offerList.get(position);
 
-        holder.tvNameCategory.setText(offer.getName() + " : " + offer.getCategory());
-        holder.tvDetails.setText("- " + offer.getSubCategory());
+        holder.tvNameCategory.setText(offer.getUsername() + " : " + offer.getCategory());
+        holder.tvDetails.setText("- " + offer.getDetails());
 
 
         // Optional: Button click actions
@@ -53,6 +54,12 @@ public class OfferProductAdapter extends RecyclerView.Adapter<OfferProductAdapte
             holder.itemView.getContext().startActivity(intent);
         });
     }
+
+    public void setData(List<ProductResponse.ProductData> newData) {
+        this.offerList = newData;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {

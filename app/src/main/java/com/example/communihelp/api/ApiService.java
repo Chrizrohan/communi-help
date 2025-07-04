@@ -10,6 +10,7 @@ import com.example.communihelp.server.ChangePasswordResponce;
 import com.example.communihelp.server.EditProfileResponse;
 import com.example.communihelp.server.HistoryResponse;
 import com.example.communihelp.server.LoginResponse;
+import com.example.communihelp.server.ProductResponse;
 import com.example.communihelp.server.ProfileResponse;
 
 import com.example.communihelp.server.SignupResponse;
@@ -107,6 +108,12 @@ public interface ApiService {
             @Field("category") String category,
             @Field("details") String details
     );
+
+    @GET("productoffer.php")
+    Call<ProductResponse> getProductOffers();
+
+    @GET("productrequest.php")
+    Call<ProductResponse> getProductRequests();
 
 
 }

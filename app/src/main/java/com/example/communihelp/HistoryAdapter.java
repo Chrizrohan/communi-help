@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.communihelp.server.HistoryResponse;
+
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
@@ -36,6 +38,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.tvNameCategory.setText(historyModel.getCategory());
 
 
+    }
+
+    public void setData(List<HistoryModel> newData) {
+        this.historyModelList = newData;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -4,18 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.communihelp.api.ApiClient;
+import com.example.communihelp.api.ApiService;
+import com.example.communihelp.server.HistoryResponse;
+import com.example.communihelp.server.ProductResponse;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -62,8 +72,10 @@ public class HistoryActivity extends AppCompatActivity {
                 selectedTabIndex = tab.getPosition();
                 if (selectedTabIndex == 0) {
                     loadOfferHistory();
+                    addOfferButton.setText("ADD Offer");
                 } else {
                     loadRequestHistory();
+                    addOfferButton.setText("ADD Request");
                 }
             }
 
@@ -83,18 +95,43 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void loadOfferHistory() {
-        // TODO: Fetch from API or local DB
-        historyModelList.clear();
-        historyModelList.add(new HistoryModel("1", "101", "Food", "Bread donation"));
-        historyModelList.add(new HistoryModel("2", "101", "Water", "Water cans for society"));
-        adapter.notifyDataSetChanged();
+
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+
+        apiService.getOfferHistory(SharedPrefManager.getInstance(HistoryActivity.this).getUserId()).enqueue(new Callback<HistoryResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<HistoryResponse> call, @NonNull Response<HistoryResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
+                    adapter.setData(response.body().getData());
+                } else {
+                    Toast.makeText(HistoryActivity.this, "No offers found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HistoryResponse> call, Throwable t) {
+                Toast.makeText(HistoryActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loadRequestHistory() {
-        // TODO: Fetch from API or local DB
-        historyModelList.clear();
-        historyModelList.add(new HistoryModel("3", "101", "Medical", "Need first aid kit"));
-        historyModelList.add(new HistoryModel("4", "101", "Clothes", "Blankets for kids"));
-        adapter.notifyDataSetChanged();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+
+        apiService.getRequestHistory(SharedPrefManager.getInstance(HistoryActivity.this).getUserId()).enqueue(new Callback<HistoryResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<HistoryResponse> call, @NonNull Response<HistoryResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
+                    adapter.setData(response.body().getData());
+                } else {
+                    Toast.makeText(HistoryActivity.this, "No offers found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HistoryResponse> call, Throwable t) {
+                Toast.makeText(HistoryActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
