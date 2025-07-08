@@ -27,7 +27,7 @@ public class ViewReviewAdapter extends RecyclerView.Adapter<ViewReviewAdapter.Vi
             super(itemView);
             tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
             tvDetails = itemView.findViewById(R.id.tvDetails);
-            textView2 = itemView.findViewById(R.id.textView2); // Star rating
+            textView2 = itemView.findViewById(R.id.textView2); // Stars
         }
     }
 
@@ -40,12 +40,9 @@ public class ViewReviewAdapter extends RecyclerView.Adapter<ViewReviewAdapter.Vi
     @Override
     public void onBindViewHolder(ViewReviewAdapter.ViewHolder holder, int position) {
         ViewReviewModel item = reviewList.get(position);
-
-        holder.tvNameCategory.setText("Name : " + item.getName() + "   " + item.getCategory());
-        holder.tvDetails.setText("- " + item.getDetails());
+        holder.tvNameCategory.setText(item.getName() + " - " + item.getCategory());
+        holder.tvDetails.setText(item.getDetails());
         holder.textView2.setText(item.getStars());
-
-
     }
 
     @Override

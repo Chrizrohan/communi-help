@@ -10,10 +10,14 @@ import com.example.communihelp.server.ChangePasswordResponce;
 import com.example.communihelp.server.EditProfileResponse;
 import com.example.communihelp.server.HistoryResponse;
 import com.example.communihelp.server.LoginResponse;
+import com.example.communihelp.server.MedicalEmergencyResponse;
 import com.example.communihelp.server.ProductResponse;
 import com.example.communihelp.server.ProfileResponse;
 
+import com.example.communihelp.server.ReviewResponse;
+import com.example.communihelp.server.ServiceResponse;
 import com.example.communihelp.server.SignupResponse;
+import com.example.communihelp.server.SimpleResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -114,6 +118,73 @@ public interface ApiService {
 
     @GET("productrequest.php")
     Call<ProductResponse> getProductRequests();
+    @GET("medicaloffer.php")
+    Call<MedicalEmergencyResponse> getMedicalOffers();
 
+    @GET("medicalrequest.php")
+    Call<MedicalEmergencyResponse> getMedicalRequests();
+    @GET("serviceoffer.php")
+    Call<ServiceResponse> getServiceOffers();
+
+    @GET("servicerequest.php")
+    Call<ServiceResponse> getServiceRequests();
+
+    @FormUrlEncoded
+    @POST("acceptproductoff.php")
+    Call<SimpleResponse> acceptProductOffer(
+            @Field("id") String refId,
+            @Field("user_id") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("acceptproductreq.php")
+    Call<SimpleResponse> acceptProductRequest(
+            @Field("id") String refId,
+            @Field("user_id") String userId
+    );
+    @FormUrlEncoded
+    @POST("ignoreoff.php")
+    Call<SimpleResponse> ignoreProductOffer(@Field("id") String refId);
+
+    @FormUrlEncoded
+    @POST("ignorereq.php")
+    Call<SimpleResponse> ignoreProductRequest(@Field("id") String refId);
+    @GET("viewreview.php")
+    Call<ReviewResponse> getReviews(@Query("user_id") String userId);
+    @FormUrlEncoded
+    @POST("acceptmedicaloff.php")
+    Call<SimpleResponse> acceptMedicalOffer(
+            @Field("id") String id,
+            @Field("user_id") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("acceptmedicalreq.php")
+    Call<SimpleResponse> acceptMedicalRequest(
+            @Field("id") String id,
+            @Field("user_id") String userId
+    );
+    @FormUrlEncoded
+    @POST("ignoreoff.php")
+    Call<SimpleResponse> ignoreMedicalOffer(@Field("id") String ref_id);
+
+    @FormUrlEncoded
+    @POST("ignorereq.php")
+    Call<SimpleResponse> ignoreMedicalRequest(@Field("id") String ref_id);
+    @FormUrlEncoded
+    @POST("acceptserviceoff.php")
+    Call<SimpleResponse> acceptServiceOffer(@Field("id") String ref_id, @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("acceptservicereq.php")
+    Call<SimpleResponse> acceptServiceRequest(@Field("id") String ref_id, @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("ignoreoff.php")
+    Call<SimpleResponse> ignoreServiceOffer(@Field("id") String ref_id);
+
+    @FormUrlEncoded
+    @POST("ignorereq.php")
+    Call<SimpleResponse> ignoreServiceRequest(@Field("id") String ref_id);
 
 }

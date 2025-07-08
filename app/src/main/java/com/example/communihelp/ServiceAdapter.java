@@ -5,18 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.communihelp.api.ApiClient;
+import com.example.communihelp.api.ApiService;
+import com.example.communihelp.server.ServiceResponse;
+import com.example.communihelp.server.SimpleResponse;
+
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
 
-    private List<ServiceModule>servicelist;
+    private List<ServiceResponse.ServiceData> serviceList;
+    private int selectedTab; // 0 = offer, 1 = request
+    private String userId;
 
-    public ServiceAdapter(List<ServiceModule> servicelist) {
-        this.servicelist = servicelist;
+    public ServiceAdapter(List<ServiceResponse.ServiceData> serviceList, int selectedTab, String userId) {
+        this.serviceList = serviceList;
+        this.selectedTab = selectedTab;
+        this.userId = userId;
     }
 
     @NonNull
@@ -27,44 +41,89 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
         return new ViewHolder(view);
     }
 
-    // ✅ This is the only correct onBindViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       ServiceModule service = servicelist.get(position);
+        ServiceResponse.ServiceData service = serviceList.get(position);
 
-        holder.tvDetails.setText(service.getDescription());
-        holder.tvNameCategory.setText(service.getName());
+        holder.tvNameCategory.setText(service.getUsername() + " : " + service.getCategory());
+        holder.tvDetails.setText("- " + service.getDetails());
 
-        holder.reviewText.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(),ViewReviewPage.class);
-            holder.itemView.getContext().startActivity(intent);
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+
+        holder.btnAccept.setOnClickListener(v -> {
+            Call<SimpleResponse> call = selectedTab == 0
+                    ? apiService.acceptServiceOffer(service.getRef_id(), userId)
+                    : apiService.acceptServiceRequest(service.getRef_id(), userId);
+
+            call.enqueue(new Callback<SimpleResponse>() {
+                @Override
+                public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+                    if (response.isSuccessful() && response.body().isStatus()) {
+                        Toast.makeText(holder.itemView.getContext(), "Accepted Successfully", Toast.LENGTH_SHORT).show();
+                        serviceList.remove(position);
+                        notifyItemRemoved(position);
+                    } else {
+                        Toast.makeText(holder.itemView.getContext(), "Accept Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                    Toast.makeText(holder.itemView.getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
+        holder.btnIgnore.setOnClickListener(v -> {
+            Call<SimpleResponse> call = selectedTab == 0
+                    ? apiService.ignoreServiceOffer(service.getRef_id())
+                    : apiService.ignoreServiceRequest(service.getRef_id());
+
+            call.enqueue(new Callback<SimpleResponse>() {
+                @Override
+                public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+                    if (response.isSuccessful() && response.body().isStatus()) {
+                        Toast.makeText(holder.itemView.getContext(), "Ignored Successfully", Toast.LENGTH_SHORT).show();
+                        serviceList.remove(position);
+                        notifyItemRemoved(position);
+                    } else {
+                        Toast.makeText(holder.itemView.getContext(), "Ignore Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                    Toast.makeText(holder.itemView.getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+        holder.reviewText.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ViewReviewPage.class);
+            intent.putExtra("user_id", service.getUser_id());
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return servicelist.size();
+        return serviceList != null ? serviceList.size() : 0;
     }
 
-    private String getStars(float rating) {
-        StringBuilder stars = new StringBuilder();
-        for (int i = 0; i < rating; i++) {
-            stars.append("★");
-        }
-        return stars.toString();
+    public void setData(List<ServiceResponse.ServiceData> newList) {
+        this.serviceList = newList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView  tvNameCategory, tvDetails,reviewText;
+        TextView tvNameCategory, tvDetails, btnAccept, btnIgnore, reviewText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-
             tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
             tvDetails = itemView.findViewById(R.id.tvDetails);
+            btnAccept = itemView.findViewById(R.id.btnAccept);
+            btnIgnore = itemView.findViewById(R.id.btnIgnore);
             reviewText = itemView.findViewById(R.id.viewReview);
         }
     }

@@ -29,25 +29,28 @@ public class OfferProduct extends AppCompatActivity {
     Context context;
     TabLayout tabLayout;
     private int selectedTabIndex = 0;
-
+    private String userId ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offerproduct);
+        userId = SharedPrefManager.getInstance(getBaseContext()).getUserId();
+
+        if (userId == null) {
+            Toast.makeText(this, "User ID not provided", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         context = this;
-
         recyclerViewOffers = findViewById(R.id.recyclerViewOffers);
         recyclerViewOffers.setLayoutManager(new LinearLayoutManager(this));
         tabLayout = findViewById(R.id.tabLayout);
 
-        // Dummy data
         offerList = new ArrayList<>();
-
-
-        adapter = new OfferProductAdapter(offerList);
+        adapter = new OfferProductAdapter(offerList, selectedTabIndex, userId);
         recyclerViewOffers.setAdapter(adapter);
 
         loadProductOffer();
@@ -56,31 +59,30 @@ public class OfferProduct extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 selectedTabIndex = tab.getPosition();
+                adapter = new OfferProductAdapter(offerList, selectedTabIndex, userId);
+                recyclerViewOffers.setAdapter(adapter);
                 if (selectedTabIndex == 0) {
                     loadProductOffer();
-
                 } else {
                     loadProductReqOffer();
-
                 }
             }
 
             @Override public void onTabUnselected(TabLayout.Tab tab) {}
             @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
-
     }
 
-    private void loadProductReqOffer() {
+    public void loadProductReqOffer() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
         apiService.getProductRequests().enqueue(new Callback<ProductResponse>() {
             @Override
             public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
-                    adapter.setData(response.body().getData());
+                    offerList = response.body().getData();
+                    adapter.setData(offerList);
                 } else {
-                    Toast.makeText(context, "No offers found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "No requests found", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -89,19 +91,16 @@ public class OfferProduct extends AppCompatActivity {
                 Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-
-    public void loadProductOffer(){
+    public void loadProductOffer() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
         apiService.getProductOffers().enqueue(new Callback<ProductResponse>() {
             @Override
             public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
-                    adapter.setData(response.body().getData());
+                    offerList = response.body().getData();
+                    adapter.setData(offerList);
                 } else {
                     Toast.makeText(context, "No offers found", Toast.LENGTH_SHORT).show();
                 }
@@ -112,6 +111,5 @@ public class OfferProduct extends AppCompatActivity {
                 Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

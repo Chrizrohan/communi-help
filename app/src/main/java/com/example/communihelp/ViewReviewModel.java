@@ -4,7 +4,7 @@ public class ViewReviewModel {
     private String name;
     private String category;
     private String details;
-    private String stars; // e.g., "★★★★★" or "★★★☆☆"
+    private String stars;
 
     public ViewReviewModel(String name, String category, String details, String stars) {
         this.name = name;

@@ -3,13 +3,22 @@ package com.example.communihelp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.communihelp.api.ApiClient;
+import com.example.communihelp.api.ApiService;
+import com.example.communihelp.server.ReviewResponse;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ViewReviewPage extends AppCompatActivity {
 
@@ -21,31 +30,59 @@ public class ViewReviewPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_review_page); // Make sure this matches your layout file name
+        setContentView(R.layout.activity_view_review_page);
 
-        // Initialize views
-        recyclerView = findViewById(R.id.recyclerViewreview); // Make sure you added this in your layout
+        recyclerView = findViewById(R.id.recyclerViewreview);
         backArrow = findViewById(R.id.backArrow);
-
-        // Set up RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Prepare dummy data
         reviewList = new ArrayList<>();
-        reviewList.add(new ViewReviewModel("Alice", "Clothes", "Very helpful and quick", "★★★★★"));
-        reviewList.add(new ViewReviewModel("Bob", "Books", "Good donation", "★★★★☆"));
-        reviewList.add(new ViewReviewModel("Charlie", "Toys", "Average experience", "★★★☆☆"));
-
-        // Set adapter
         adapter = new ViewReviewAdapter(this, reviewList);
         recyclerView.setAdapter(adapter);
 
-        // Handle back button
-        backArrow.setOnClickListener(new View.OnClickListener() {
+        String userId = getIntent().getStringExtra("user_id");
+        if (userId != null) {
+            fetchReviews(userId);
+        }
+
+        backArrow.setOnClickListener(v -> finish());
+    }
+
+    private void fetchReviews(String userId) {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.getReviews(userId).enqueue(new Callback<ReviewResponse>() {
             @Override
-            public void onClick(View v) {
-                finish(); // Closes the activity and goes back
+            public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
+                    List<ReviewResponse.ReviewData> data = response.body().getData();
+                    reviewList.clear();
+                    for (ReviewResponse.ReviewData review : data) {
+                        reviewList.add(new ViewReviewModel(
+                                "User ID: " + review.getUser_id(),
+                                review.getCategory(),
+                                review.getReview(),
+                                getStarDisplay(review.getStars())
+                        ));
+                    }
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(ViewReviewPage.this, "No reviews found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewResponse> call, Throwable t) {
+                Toast.makeText(ViewReviewPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String getStarDisplay(String stars) {
+        try {
+            int starCount = Integer.parseInt(stars);
+            return "★".repeat(starCount) + "☆".repeat(5 - starCount);
+        } catch (Exception e) {
+            return stars;
+        }
     }
 }
