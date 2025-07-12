@@ -11,6 +11,10 @@ import com.example.communihelp.server.EditProfileResponse;
 import com.example.communihelp.server.HistoryResponse;
 import com.example.communihelp.server.LoginResponse;
 import com.example.communihelp.server.MedicalEmergencyResponse;
+import com.example.communihelp.server.Notify1ApiResponse;
+import com.example.communihelp.server.Notify1Response;
+import com.example.communihelp.server.Notify2ApiResponse;
+import com.example.communihelp.server.Notify2Response;
 import com.example.communihelp.server.ProductResponse;
 import com.example.communihelp.server.ProfileResponse;
 
@@ -187,4 +191,16 @@ public interface ApiService {
     @POST("ignorereq.php")
     Call<SimpleResponse> ignoreServiceRequest(@Field("id") String ref_id);
 
+    @GET("notify1.php")
+    Call<Notify1ApiResponse> getNotify1(@Query("user_id") String userId);
+
+    @GET("notify2.php")
+    Call<Notify2ApiResponse> getNotify2(@Query("user_id") String userId);
+    @FormUrlEncoded
+    @POST("yes.php")
+    Call<SimpleResponse> sendYesResponse(
+            @Field("ref_id") String refId
+    );
 }
+
+
